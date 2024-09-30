@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    volumes:
+      - ./frontend:/react-app
+    ports:
+      - '5173:5173'
+  # backend:
+  #   build: ./backend
+  #   container_name: backend_c
+  #   ports:
+  #     - '4000:4000'
+  #   stdin_open: true
+  #   tty: true
