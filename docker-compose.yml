@@ -2,7 +2,7 @@ services:
   frontend:
     build:
       context: ./frontend/
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: frontend
     volumes:
       - ./frontend:/react-app
@@ -10,10 +10,14 @@ services:
     ports:
       - '5173:5173'
     command: npm run dev
-  # backend:
-  #   build: ./backend
-  #   container_name: backend_c
-  #   ports:
-  #     - '4000:4000'
-  #   stdin_open: true
-  #   tty: true
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile.dev
+    container_name: backend
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3000:3000'
+    command: npm run start:dev
